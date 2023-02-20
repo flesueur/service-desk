@@ -171,6 +171,11 @@ $debug = false;
 # Smarty debug mode - will popup debug information on web interface
 $smarty_debug = false;
 
+# Audit
+#
+# if audit is needed :
+#$audit_file=fopen("/var/log/service-desk/audit.txt", "a");
+
 # Allow to override current settings with local configuration
 if (file_exists (dirname (__FILE__) . '/config.inc.local.php')) {
     include dirname (__FILE__) . '/config.inc.local.php';

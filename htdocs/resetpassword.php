@@ -71,9 +71,20 @@ if ($result === "") {
         # Notify password change
         #==============================================================================
         if ($result === "passwordchanged") {
-            # get mail for entry if any
-
-            # Get user email for notification
+            # audit using global $audit_file;
+            if (isset($audit_file))
+            {
+                $dt=new DateTimeImmutable;
+                $audit_data=array ("when"=>$dt->format('Y-m-d H:i:s:u'),
+                                   "action"=>$result,
+                                   "subject"=>array ("dn"=>$dn),
+                                   "originator"=>array ("user"=>getenv('REMOTE_USER'),"location"=>array ("address"=>getenv('REMOTE_ADDR'))),
+                                   "application"=>array ("file"=>__FILE__,"line"=>__LINE__,"function"=>__FUNCTION__,
+                                                         "host"=>getenv('HTTP_HOST'),"server"=>getenv('SERVER_NAME'))
+                );
+                fwrite($audit_file,json_encode($audit_data,JSON_UNESCAPED_UNICODE|JSON_PARTIAL_OUTPUT_ON_ERROR|JSON_UNESCAPED_SLASHES,3)."\n");
+                fflush($audit_file);
+            }
             if ($notify_on_change) {
                 # Search for user
                 $search = ldap_read($ldap, $dn, '(objectClass=*)', $mail_attributes);

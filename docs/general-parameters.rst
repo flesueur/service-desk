@@ -144,3 +144,13 @@ You need to define where Smarty is installed:
 
     define("SMARTY", "/usr/share/php/smarty3/Smarty.class.php");
 
+Audit
+-----
+
+If audit is needed audit file has to be opened in local config config.inc.local.php
+audit_file should be explicilty open with "a"
+path for audit file should exists and have write access for www-data user or group
+
+.. code-block:: php
+
+    $audit_file=fopen("/var/log/service-desk/audit.txt", "a");
