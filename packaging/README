@@ -5,14 +5,21 @@
 # 1 - Archive tar.gz
 #==============================================================================
 
+php composer is required for this step to complete. please install composer.
+unzip is required too.
+rpm-build and rpm-sign are required too.
+
+on redhat/fedora/rocky :
+
+$ sudo dnf install composer rpm-sign rpm-build
+
 From current directory, do:
-$ ./makedist VERSION
+$ ./makedist.sh VERSION
 
 with VERSION the current verion of the package
 
 For example:
-$ ./makedist 0.4
-
+$ ./makedist.sh 0.5.beta
 
 # 2 - Debian
 #==============================================================================

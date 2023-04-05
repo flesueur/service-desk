@@ -5,9 +5,9 @@
 #
 # GPL License
 #
-# Copyright (C) 2020 Clement OUDOT
-# Copyright (C) 2020 Worteks
-# Copyright (C) 2020 LTB-project
+# Copyright (C) 2020-2023 Clement OUDOT
+# Copyright (C) 2020-2023 Worteks
+# Copyright (C) 2020-2023 LTB-project
 #=================================================
 
 #=================================================
@@ -15,7 +15,7 @@
 #=================================================
 %define sd_name      service-desk
 %define sd_realname  ltb-project-%{name}
-%define sd_version   0.4
+%define sd_version   0.5.beta
 %define sd_destdir   /usr/share/%{name}
 %define sd_cachedir  /var/cache/%{name}
 
@@ -36,7 +36,7 @@ Source: %{sd_realname}-%{sd_version}.tar.gz
 Source1: service-desk-apache.conf
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Prereq: coreutils
+Requires(pre,preun): coreutils
 Requires: php, php-ldap, php-Smarty
 
 %description
