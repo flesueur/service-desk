@@ -38,8 +38,8 @@ You should have a ~/.rpmmacros like this:
 
 ----
 %_topdir /home/clement/build
-%dist .el5
-%distribution .el5
+%dist .el9
+%distribution .el9
 %_signature gpg
 %_gpg_name 6D45BFC5
 %_gpgbin /usr/bin/gpg
